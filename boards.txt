@@ -117,3 +117,9 @@ MyBoard_nRF51822.menu.lfclk.lfrc=RC Oscillator
 MyBoard_nRF51822.menu.lfclk.lfrc.build.lfclk_flags=-DUSE_LFRC
 MyBoard_nRF51822.menu.lfclk.lfsynt=Synthesized
 MyBoard_nRF51822.menu.lfclk.lfsynt.build.lfclk_flags=-DUSE_LFSYNT
+
+MyBoard_nRF51822.menu.reset.notenable=Don't enable
+MyBoard_nRF51822.menu.reset.notenable.build.reset_flags=
+MyBoard_nRF51822.menu.reset.enabled=Enable (via MySensors)
+MyBoard_nRF51822.menu.reset.enabled.build.reset_flags=-DCONFIG_ENABLE_PINRESET
+

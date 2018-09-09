@@ -1,0 +1,7 @@
+identifier: nrf52832_qfaa 
+name: nRF52832 QFAA
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gccarmemb

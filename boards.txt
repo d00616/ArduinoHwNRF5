@@ -21,6 +21,61 @@ menu.bootcode=Bootloader/SD
 menu.lfclk=Low Frequency Clock
 menu.reset=Reset
 
+# MyBoardNRF5 nRF51822
+# Board definition is expected in
+# MyBoard.cpp and MyBoard.h as part
+# of the sketch
+###################################
+
+MyBoard_nRF51822.name=MyBoardNRF5 nRF51822
+MyBoard_nRF51822.bootloader.tool=sandeepmistry:openocd
+MyBoard_nRF51822.upload.tool=sandeepmistry:openocd
+MyBoard_nRF51822.upload.target=nrf51
+MyBoard_nRF51822.upload.maximum_size=245760
+
+MyBoard_nRF51822.build.mcu=cortex-m0
+MyBoard_nRF51822.build.f_cpu=16000000
+MyBoard_nRF51822.build.board=GENERIC
+MyBoard_nRF51822.build.core=sandeepmistry:nRF5
+MyBoard_nRF51822.build.variant=MyBoardNRF5
+MyBoard_nRF51822.build.variant_system_lib=
+# -I{build.path} and -DMYBOARDNRF5 is only required by MyBoardNRF5
+MyBoard_nRF51822.build.extra_flags=-DNRF51 -DMYBOARDNRF5 -I{build.path}
+MyBoard_nRF51822.build.float_flags=
+MyBoard_nRF51822.build.ldscript=nrf51_{build.chip}.ld
+
+MyBoard_nRF51822.menu.chip.xxaa=16 kB RAM, 256 kB flash (xxaa)
+MyBoard_nRF51822.menu.chip.xxaa.build.chip=xxaa
+MyBoard_nRF51822.menu.chip.xxac=32 kB RAM, 256 kB flash (xxac)
+MyBoard_nRF51822.menu.chip.xxac.build.chip=xxac
+
+MyBoard_nRF51822.menu.bootcode.none=None
+MyBoard_nRF51822.menu.bootcode.none.softdevice=none
+MyBoard_nRF51822.menu.bootcode.s110=S110 (SoftDevice)
+MyBoard_nRF51822.menu.bootcode.s110.softdevice=s110
+MyBoard_nRF51822.menu.bootcode.s110.softdeviceversion=8.0.0
+MyBoard_nRF51822.menu.bootcode.s110.upload.maximum_size=135168
+MyBoard_nRF51822.menu.bootcode.s110.build.extra_flags=-DNRF51 -DMYBOARDNRF5 -DS110 -DNRF51_S110 -DSOFTDEVICE_PRESENT -I{build.path}
+MyBoard_nRF51822.menu.bootcode.s110.build.ldscript=armgcc_s110_nrf51822_{build.chip}.ld
+MyBoard_nRF51822.menu.bootcode.s130=S130 (SoftDevice)
+MyBoard_nRF51822.menu.bootcode.s130.softdevice=s130
+MyBoard_nRF51822.menu.bootcode.s130.softdeviceversion=2.0.1
+MyBoard_nRF51822.menu.bootcode.s130.upload.maximum_size=135168
+MyBoard_nRF51822.menu.bootcode.s130.build.extra_flags=-DNRF51 -DMYBOARDNRF5 -DS130 -DNRF51_S130 -DSOFTDEVICE_PRESENT -I{build.path}
+MyBoard_nRF51822.menu.bootcode.s130.build.ldscript=armgcc_s130_nrf51822_{build.chip}.ld
+
+MyBoard_nRF51822.menu.lfclk.lfxo=Crystal Oscillator
+MyBoard_nRF51822.menu.lfclk.lfxo.build.lfclk_flags=-DUSE_LFXO
+MyBoard_nRF51822.menu.lfclk.lfrc=RC Oscillator
+MyBoard_nRF51822.menu.lfclk.lfrc.build.lfclk_flags=-DUSE_LFRC
+MyBoard_nRF51822.menu.lfclk.lfsynt=Synthesized
+MyBoard_nRF51822.menu.lfclk.lfsynt.build.lfclk_flags=-DUSE_LFSYNT
+
+MyBoard_nRF51822.menu.reset.notenable=Don't enable
+MyBoard_nRF51822.menu.reset.notenable.build.reset_flags=
+MyBoard_nRF51822.menu.reset.enabled=Enable (MySensors only)
+MyBoard_nRF51822.menu.reset.enabled.build.reset_flags=-DNRF51_ENABLE_RESET
+
 # MyBoardNRF5 nRF52832
 # Board definition is expected in
 # MyBoard.cpp and MyBoard.h as part
@@ -48,11 +103,17 @@ MyBoard_nRF52832.build.ldscript=nrf52_xxaa.ld
 
 MyBoard_nRF52832.menu.bootcode.none=None
 MyBoard_nRF52832.menu.bootcode.none.softdevice=none
+MyBoard_nRF52832.menu.bootcode.mcuboot=mcuboot
+MyBoard_nRF52832.menu.bootcode.mcuboot.softdevice=none
+MyBoard_nRF52832.menu.bootcode.mcuboot.build.ldscript={runtime.platform.path}/bootloaders/mcuboot/nrf52832_qfaa/MyBoardNRF5.ld
+MyBoard_nRF52832.menu.bootcode.mcuboot.build.extra_flags=-DNRF52 -DMYBOARDNRF5 -DMCUBOOT_PRESENT -I{build.path} -I{runtime.platform.path}/bootloaders/mcuboot/nrf52832_qfaa
+MyBoard_nRF52832.menu.bootcode.mcuboot.upload.maximum_size=196096
+MyBoard_nRF52832.menu.bootcode.mcuboot.bootloader.filepath={runtime.platform.path}/bootloaders/mcuboot/nrf52832_qfaa/bootloader.bin
 MyBoard_nRF52832.menu.bootcode.s132=S132 (SoftDevice)
 MyBoard_nRF52832.menu.bootcode.s132.softdevice=s132
 MyBoard_nRF52832.menu.bootcode.s132.softdeviceversion=2.0.1
-MyBoard_nRF52832.menu.bootcode.s132.upload.maximum_size=409600
-MyBoard_nRF52832.menu.bootcode.s132.build.extra_flags=-DNRF52 -DS132 -DNRF51_S132 -DSOFTDEVICE_PRESENT
+MyBoard_nRF52832.menu.bootcode.s132.upload.maximum_size=376832
+MyBoard_nRF52832.menu.bootcode.s132.build.extra_flags=-DNRF52 -DMYBOARDNRF5 -DS132 -DNRF52_S132 -DSOFTDEVICE_PRESENT -I{build.path}
 MyBoard_nRF52832.menu.bootcode.s132.build.ldscript=armgcc_s132_nrf52832_xxaa.ld
 
 MyBoard_nRF52832.menu.lfclk.lfxo=Crystal Oscillator
@@ -67,53 +128,42 @@ MyBoard_nRF52832.menu.reset.notenable.build.reset_flags=
 MyBoard_nRF52832.menu.reset.enabled=Enable
 MyBoard_nRF52832.menu.reset.enabled.build.reset_flags=-DCONFIG_GPIO_AS_PINRESET
 
-
-# MyBoardNRF5 nRF51822
+# MyBoardNRF5 nRF52840
 # Board definition is expected in
 # MyBoard.cpp and MyBoard.h as part
 # of the sketch
 ###################################
 
-MyBoard_nRF51822.name=MyBoardNRF5 nRF51822
-MyBoard_nRF51822.bootloader.tool=sandeepmistry:openocd
-MyBoard_nRF51822.upload.tool=sandeepmistry:openocd
-MyBoard_nRF51822.upload.target=nrf51
-MyBoard_nRF51822.upload.maximum_size=262144
+MyBoard_nRF52840.name=MyBoardNRF5 nRF52840 (experimental, P0 only)
 
-MyBoard_nRF51822.build.mcu=cortex-m0
-MyBoard_nRF51822.build.f_cpu=16000000
-MyBoard_nRF51822.build.board=GENERIC
-MyBoard_nRF51822.build.core=sandeepmistry:nRF5
-MyBoard_nRF51822.build.variant=MyBoardNRF5
-MyBoard_nRF51822.build.variant_system_lib=
+MyBoard_nRF52840.bootloader.tool=sandeepmistry:openocd
+
+MyBoard_nRF52840.upload.tool=sandeepmistry:openocd
+MyBoard_nRF52840.upload.target=nrf52
+MyBoard_nRF52840.upload.maximum_size=1015808
+
+MyBoard_nRF52840.build.mcu=cortex-m4
+MyBoard_nRF52840.build.f_cpu=16000000
+MyBoard_nRF52840.build.board=GENERIC
+MyBoard_nRF52840.build.core=sandeepmistry:nRF5
+MyBoard_nRF52840.build.variant=MyBoardNRF5
+MyBoard_nRF52840.build.variant_system_lib=
 # -I{build.path} and -DMYBOARDNRF5 is only required by MyBoardNRF5
-MyBoard_nRF51822.build.extra_flags=-DNRF51 -DMYBOARDNRF5 -I{build.path}
-MyBoard_nRF51822.build.float_flags=
-MyBoard_nRF51822.build.ldscript=nrf51_{build.chip}.ld
+MyBoard_nRF52840.build.extra_flags=-DNRF52 -DMYBOARDNRF5 -I{build.path}
+MyBoard_nRF52840.build.float_flags=-mfloat-abi=hard -mfpu=fpv4-sp-d16
+MyBoard_nRF52840.build.ldscript=nrf52_xxaa.ld
 
-MyBoard_nRF51822.menu.chip.xxaa=16 kB RAM, 256 kB flash (xxaa)
-MyBoard_nRF51822.menu.chip.xxaa.build.chip=xxaa
-MyBoard_nRF51822.menu.chip.xxac=32 kB RAM, 256 kB flash (xxac)
-MyBoard_nRF51822.menu.chip.xxac.build.chip=xxac
+MyBoard_nRF52840.menu.bootcode.none=None
+MyBoard_nRF52840.menu.bootcode.none.softdevice=none
 
-MyBoard_nRF51822.menu.bootcode.none=None
-MyBoard_nRF51822.menu.bootcode.none.softdevice=none
-MyBoard_nRF51822.menu.bootcode.s110=S110 (SoftDevice)
-MyBoard_nRF51822.menu.bootcode.s110.softdevice=s110
-MyBoard_nRF51822.menu.bootcode.s110.softdeviceversion=8.0.0
-MyBoard_nRF51822.menu.bootcode.s110.upload.maximum_size=151552
-MyBoard_nRF51822.menu.bootcode.s110.build.extra_flags=-DNRF51 -DS110 -DNRF51_S110 -DSOFTDEVICE_PRESENT
-MyBoard_nRF51822.menu.bootcode.s110.build.ldscript=armgcc_s110_nrf51822_{build.chip}.ld
-MyBoard_nRF51822.menu.bootcode.s130=S130 (SoftDevice)
-MyBoard_nRF51822.menu.bootcode.s130.softdevice=s130
-MyBoard_nRF51822.menu.bootcode.s130.softdeviceversion=2.0.1
-MyBoard_nRF51822.menu.bootcode.s130.upload.maximum_size=151552
-MyBoard_nRF51822.menu.bootcode.s130.build.extra_flags=-DNRF51 -DS130 -DNRF51_S130 -DSOFTDEVICE_PRESENT
-MyBoard_nRF51822.menu.bootcode.s130.build.ldscript=armgcc_s130_nrf51822_{build.chip}.ld
+MyBoard_nRF52840.menu.lfclk.lfxo=Crystal Oscillator
+MyBoard_nRF52840.menu.lfclk.lfxo.build.lfclk_flags=-DUSE_LFXO
+MyBoard_nRF52840.menu.lfclk.lfrc=RC Oscillator
+MyBoard_nRF52840.menu.lfclk.lfrc.build.lfclk_flags=-DUSE_LFRC
+MyBoard_nRF52840.menu.lfclk.lfsynt=Synthesized
+MyBoard_nRF52840.menu.lfclk.lfsynt.build.lfclk_flags=-DUSE_LFSYNT
 
-MyBoard_nRF51822.menu.lfclk.lfxo=Crystal Oscillator
-MyBoard_nRF51822.menu.lfclk.lfxo.build.lfclk_flags=-DUSE_LFXO
-MyBoard_nRF51822.menu.lfclk.lfrc=RC Oscillator
-MyBoard_nRF51822.menu.lfclk.lfrc.build.lfclk_flags=-DUSE_LFRC
-MyBoard_nRF51822.menu.lfclk.lfsynt=Synthesized
-MyBoard_nRF51822.menu.lfclk.lfsynt.build.lfclk_flags=-DUSE_LFSYNT
+MyBoard_nRF52840.menu.reset.notenable=Don't enable
+MyBoard_nRF52840.menu.reset.notenable.build.reset_flags=
+MyBoard_nRF52840.menu.reset.enabled=Enable
+MyBoard_nRF52840.menu.reset.enabled.build.reset_flags=-DCONFIG_GPIO_AS_PINRESET

@@ -1,0 +1,10 @@
+# Kconfig - nRF52 BLENANO 2 board configuration
+#
+# Copyright (c) 2016 Linaro Limited.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+
+config BOARD_NRF52840_QFAA
+	bool "nRF52 NRF52840_QFAA"
+	depends on SOC_NRF52840_QFAA
